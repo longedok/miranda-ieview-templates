@@ -14,7 +14,6 @@
     <link rel=stylesheet type="text/css" href="style.css" />
     <link rel=stylesheet type="text/css" href="messages.css" />
     <link rel=stylesheet type="text/css" href="history.css">
-    <link rel=stylesheet type="text/css" href="juick.css">
     <script language="Javascript" src="utils.js"></script>
     <script language="Javascript" src="nizers.js"></script>
 </head>

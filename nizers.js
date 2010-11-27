@@ -12,11 +12,11 @@ function juickonizer(inpId){
     var nickRegEx = /\B(@[a-zA-Z0-9-.@_|]+)\b/gm;
     var tagRegEx = /(\*\S+?)(?=<br>| \*)/igm;
         
-    wrap(inpId, tagRegEx, '<a>', 'class="juickTag" href="' + jlink + '$1"');
+    wrap(inpId, tagRegEx, '<a>', 'class="tag" href="' + jlink + '$1"');
     // обoрачиваем номера постов/комментов ссылками
-    wrap(inpId, msgNumRegEx, '<a>', 'class="juickMsgNum" href="' + jlink + '$1%20"');
+    wrap(inpId, msgNumRegEx, '<a>', 'class="msgNum" href="' + jlink + '$1%20"');
     // оборачиваем ники ссылками
-    wrap(inpId, nickRegEx, '<a>', 'class="juickNick" href="' + jlink + '$1+"');
+    wrap(inpId, nickRegEx, '<a>', 'class="mick" href="' + jlink + '$1+"');
     // добавляем управление вставкой номеров постов/комментариев
     var msgNumRegEx2 = /\B(((#\d+)(\/\d+)?)<\/a>)/igm;
     // #123456+
@@ -49,8 +49,8 @@ function bnwizer(inpId){
     var msgNumRegEx = /--- ([A-Z0-9]{6})/igm;
     var nickRegEx   = /\+\+\+ (\[.+?\]) ([\w\d-]+)( \(in reply to (([A-Z0-9]{6})(\/([A-Z0-9]{3}))\)))?:/igm;
     //var tagRegEx    = / /igm;
-    wrap(inpId, msgNumRegEx, '<a>', 'class="juickMsgNum" href="' + blink + 'show%20--message=$1"', '$1');
-    wrap(inpId, nickRegEx, '<a>', 'class="juickNick" href="' + blink + 'show%20--user=$2"', '@$2', '', ' $1');
+    wrap(inpId, msgNumRegEx, '<a>', 'class="msgNum" href="' + blink + 'show%20--message=$1"', '$1');
+    wrap(inpId, nickRegEx, '<a>', 'class="nick" href="' + blink + 'show%20--user=$2"', '@$2', '', ' $1');
 
     var msgNumRegEx2 = /(([A-Z0-9]{6})(\/[A-Z0-9]{3})?<\/A>)/gm;
     var msgNumControl = '(<a class="controls" title="Показать комментарии" href="' + 
@@ -78,11 +78,11 @@ function pstonizer(inpId){
     var nickRegEx = /\B(@[a-zA-Z0-9-.@_|]+)\b/gm;
     var tagRegEx = /(\*\S+?)(?=<br>| \*)/igm;
         
-    wrap(inpId, tagRegEx, '<a>', 'class="juickTag" href="' + pstolink + '$1"');
+    wrap(inpId, tagRegEx, '<a>', 'class="tag" href="' + pstolink + '$1"');
     // обoрачиваем номера постов/комментов ссылками
-    wrap(inpId, msgNumRegEx, '<a>', 'class="juickMsgNum" href="' + pstolink + '$1%20"');
+    wrap(inpId, msgNumRegEx, '<a>', 'class="msgNum" href="' + pstolink + '$1%20"');
     // оборачиваем ники ссылками
-    wrap(inpId, nickRegEx, '<span>', 'class="juickNick"');
+    wrap(inpId, nickRegEx, '<span>', 'class="nick"');
     // добавляем управление вставкой номеров постов/комментариев
     var msgNumRegEx2 = /\B(((#[A-Za-z]{7})(\/\d+)?)<\/a>)/igm;
     // #123456+
