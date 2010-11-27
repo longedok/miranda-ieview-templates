@@ -16,7 +16,7 @@ function juickonizer(inpId){
     // обoрачиваем номера постов/комментов ссылками
     wrap(inpId, msgNumRegEx, '<a>', 'class="msgNum" href="' + jlink + '$1%20"');
     // оборачиваем ники ссылками
-    wrap(inpId, nickRegEx, '<a>', 'class="mick" href="' + jlink + '$1+"');
+    wrap(inpId, nickRegEx, '<a>', 'class="nick" href="' + jlink + '$1+"');
     // добавляем управление вставкой номеров постов/комментариев
     var msgNumRegEx2 = /\B(((#\d+)(\/\d+)?)<\/a>)/igm;
     // #123456+

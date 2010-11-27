@@ -1,15 +1,23 @@
-.msgNum {
-    text-decoration: none;
-    font: bold;
-    color: green;
+a {
+    color: #2A2A9F;
 }
-
 span .nick {
     font: bold;
 }
 
+.msgNum {
+    text-decoration: none;
+    font: bold;
+    color: #008613;
+}
+
 .msgNum:hover {
     text-decoration: underline;
+}
+
+.nick {
+    font: bold;
+    text-decoration: none;
 }
 
 .nick:link {
@@ -28,6 +36,10 @@ span .nick {
 
 .controls:hover {
     text-decoration: underline;
+}
+
+.tag {
+    color: #242585;
 }
 
 .tag:link {
