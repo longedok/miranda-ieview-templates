@@ -1,0 +1,48 @@
+/*HTML*/
+
+body {
+	font-family: Tahoma;
+	font-size: 8pt;
+	margin: 0px;
+	background-color: #fff;	
+}
+img {
+	border: 0; margin: 0 1px 0 1px;
+	vertical-align: text-bottom;
+}
+.In, .Out, .URL, .File, .hIn, .hOut, .hURL, .hFile {
+	padding: 3px 8px 4px 8px;
+}
+.Out, .hOut, .hOutInner {
+	background-color: #f5f5f5;
+}
+.InName, .OutName, .URLName, .FileName, .InDate, .OutDate, .hInDate, .hOutDate, .hInName, .hOutName, .hURLName, .hFileName {
+	font-weight: bold;
+}
+.InName, .hInName, .InDate, .hInDate {
+	color: #b20;
+}
+.OutName, .hOutName, .OutDate, .hOutDate {
+	color: #05b;
+}
+.URLName, hURLName {
+	color: #070;
+}
+.FileName, .hFileName {
+	color: #909;
+}
+.InText, .OutText {
+
+}
+.hInText, .hOutText, .hInDate, .hOutDate {
+	color: #666;
+}
+.Status, .hStatus {
+	font-size: 7pt;
+	padding: 1px 0 2px 0;
+	text-align: center;
+	color: #999;
+}
+.InInner, .OutInner, .hInInner, .hOutInner {
+	padding: 3px 8px 4px 8px;
+}

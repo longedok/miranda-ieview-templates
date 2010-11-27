@@ -1,0 +1,54 @@
+.juickMsgNum {
+    text-decoration: none;
+    font: bold;
+    color: green;
+}
+
+span .juickNick {
+    font: bold;
+}
+
+.juickMsgNum:hover {
+    text-decoration: underline;
+}
+
+.juickNick:link {
+    font: bold;
+    text-decoration: none;
+    color: #000000;
+}
+
+.juickNick:hover {
+    text-decoration: underline;
+}
+
+.controls:link {
+    text-decoration: none;
+}
+
+.controls:hover {
+    text-decoration: underline;
+}
+
+.juickTag:link {
+    text-decoration: none;
+    font: bold;
+}
+
+.juickTag:hover {
+    text-decoration: underline;
+}
+
+.juickBold {
+    font: bold;
+}
+
+.juickItalic {
+    font: italic;
+}
+
+.juickUnderscore {
+    text-decoration: underline;
+}
+
+
