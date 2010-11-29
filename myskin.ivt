@@ -61,9 +61,11 @@
         var juick = /(juick|jubo)/i;
         var bnw = /bnw.blasux.ru/i;
         var psto = /psto/i;
+        var nya = /nyashaj/i;
 
         nize(id, juick, juickonizer);
         nize(id, psto, pstonizer);
+        nize(id, nya, nyaizer);
         //nize(id, bnw, bnwizer);
     </script>
 </div>
@@ -89,9 +91,12 @@
         var juick = /(juick|jubo)/i;
         var bnw = /bnw.blasux.ru/i;
         var psto = /psto/i;
+        var nya = /nyashaj/i;
+
 
         nize(id, juick, juickonizer);
         nize(id, psto, pstonizer);
+        nize(id, nya, nyaizer);
         //nize(id, bnw, bnwizer);
     </script>
 </div>

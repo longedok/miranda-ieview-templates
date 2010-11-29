@@ -12,11 +12,11 @@ function juickonizer(inpId){
     var nickRegEx = /\B(@[a-zA-Z0-9-.@_|]+)\b/gm;
     var tagRegEx = /(\*\S+?)(?=<br>| \*)/igm;
         
-    wrap(inpId, tagRegEx, '<a>', 'class="tag" href="' + jlink + '$1"');
     // обoрачиваем номера постов/комментов ссылками
     wrap(inpId, msgNumRegEx, '<a>', 'class="msgNum" href="' + jlink + '$1%20"');
     // оборачиваем ники ссылками
     wrap(inpId, nickRegEx, '<a>', 'class="nick" href="' + jlink + '$1+"');
+    wrap(inpId, tagRegEx, '<a>', 'class="tag" href="' + jlink + '$1"');
     // добавляем управление вставкой номеров постов/комментариев
     var msgNumRegEx2 = /\B(((#\d+)(\/\d+)?)<\/a>)/igm;
     // #123456+
@@ -101,4 +101,45 @@ function pstonizer(inpId){
     //document.getElementById(inpId).innerHTML += '<a class="controls"  title="Топ." href="' + pstolink + '@top+">@</a> ';
     //document.getElementById(inpId).innerHTML += '<a class="controls"  title="Показать вашу ленту." href="' + pstolink + '#">#</a>';
     //document.getElementById(inpId).innerHTML += ' <a class="controls" title="Показать последние 10 сообщений" href="' + pstolink + '#+">#+</a> ';
+}
+
+/** 
+ * @description A nizer for bakanyaka.org.com.
+ *
+ * @return void
+ */
+function nyaizer(inpId){
+    var jlink = "xmpp:nyashaj@neko.im?message;body=";
+    // regexp для номеров сообщений. 
+    // пример работы:
+    // для номера #123456/1 в $1 - будет #123456/1, в $2 - #123456
+    var msgNumRegEx = /\B((#\d+)(\/\d+)?)/igm;
+    var nickRegEx = /\B(@[a-zA-Z0-9-.@_|]+)\b/gm;
+    var tagRegEx = /(\*\S+?)(?= ?<br>| \*)/igm;
+        
+    // обoрачиваем номера постов/комментов ссылками
+    wrap(inpId, msgNumRegEx, '<a>', 'class="msgNum" href="' + jlink + '$1%20"');
+    // оборачиваем ники ссылками
+    wrap(inpId, nickRegEx, '<a>', 'class="nick" href="' + jlink + '$1+"');
+    wrap(inpId, tagRegEx, '<a>', 'class="tag" href="' + jlink + '$1"');
+    // добавляем управление вставкой номеров постов/комментариев
+    var msgNumRegEx2 = /\B(((#\d+)(\/\d+)?)<\/a>)/igm;
+    // #123456+
+    var msgNumControl = '(<a class="controls" title="Показать комментарии" href="' + jlink + '$3+">+</a>';
+    // S #123456
+    msgNumControl += ' <a class="controls" title="Подписаться на комментарии" href="' + jlink + 'S%20$3">S</a>';
+    // U #123456
+    msgNumControl += ' <a class="controls" title="Отписаться от комментариев" href="' + jlink + 'U%20$3">U</a>';
+    // D #123456
+    msgNumControl += ' <a class="controls" title="Удалить запись" href="' + jlink + 'D%20$2">D</a>';
+    // ! #123456
+    msgNumControl += ' <a class="controls" title="Рекомендовать запись" href="' + jlink + '!%20$3">!</a>)';
+
+    add(inpId, msgNumRegEx2, msgNumControl);
+    
+    // Добавляем # и #+ в конец каждого сообщения
+    document.getElementById(inpId).innerHTML += "<br><br>";
+    document.getElementById(inpId).innerHTML += '<a class="controls"  title="Топ." href="' + jlink + '@top+">@</a> ';
+    document.getElementById(inpId).innerHTML += '<a class="controls"  title="Показать вашу ленту." href="' + jlink + '#">#</a>';
+    document.getElementById(inpId).innerHTML += ' <a class="controls" title="Показать последние 10 сообщений" href="' + jlink + '#+">#+</a> ';
 }
