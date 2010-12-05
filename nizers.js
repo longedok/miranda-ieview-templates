@@ -74,7 +74,7 @@ function pstonizer(inpId){
     // regexp для номеров сообщений. 
     // пример работы:
     // для номера #123456/1 в $1 - будет #123456/1, в $2 - #123456
-    var msgNumRegEx = /\B((#[A-Za-z]{7})(\/\d+)?)/igm;
+    var msgNumRegEx = /\B((#[a-z0-9]{5})(\/\d+)?)/igm;
     var nickRegEx = /\B(@[a-zA-Z0-9-.@_|]+)\b/gm;
     var tagRegEx = /(\*\S+?)(?=<br>| \*)/igm;
         
@@ -84,7 +84,7 @@ function pstonizer(inpId){
     // оборачиваем ники ссылками
     wrap(inpId, nickRegEx, '<span>', 'class="nick"');
     // добавляем управление вставкой номеров постов/комментариев
-    var msgNumRegEx2 = /\B(((#[A-Za-z]{7})(\/\d+)?)<\/a>)/igm;
+    var msgNumRegEx2 = /\B(((#[a-z0-9]{5})(\/\d+)?)<\/a>)/igm;
     // #123456+
     var msgNumControl = '(<a class="controls" title="Показать комментарии" href="' + pstolink + '$3+">+</a>';
     // S #123456
@@ -92,7 +92,8 @@ function pstonizer(inpId){
     // U #123456
     msgNumControl += ' <a class="controls" title="Отписаться от комментариев" href="' + pstolink + 'U%20$3">U</a>';
     // D #123456
-    msgNumControl += ' <a class="controls" title="Удалить запись" href="' + pstolink + 'D%20$2">D</a>)';
+    msgNumControl += ' <a class="controls" title="Удалить запись" href="' + pstolink + 'D%20$2">D</a>';
+    msgNumControl += ' <a class="controls" title="Рекомендовать запись" href="' + pstolink + '!%20$3">!</a>)';
 
     add(inpId, msgNumRegEx2, msgNumControl);
     
