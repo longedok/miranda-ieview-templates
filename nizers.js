@@ -98,10 +98,10 @@ function pstonizer(inpId){
     add(inpId, msgNumRegEx2, msgNumControl);
     
     //// Добавляем # и #+ в конец каждого сообщения
-    //document.getElementById(inpId).innerHTML += "<br><br>";
+    document.getElementById(inpId).innerHTML += "<br><br>";
     //document.getElementById(inpId).innerHTML += '<a class="controls"  title="Топ." href="' + pstolink + '@top+">@</a> ';
-    //document.getElementById(inpId).innerHTML += '<a class="controls"  title="Показать вашу ленту." href="' + pstolink + '#">#</a>';
-    //document.getElementById(inpId).innerHTML += ' <a class="controls" title="Показать последние 10 сообщений" href="' + pstolink + '#+">#+</a> ';
+    document.getElementById(inpId).innerHTML += '<a class="controls"  title="Показать последние 10 сообщений"' + pstolink + '+10">+10</a>';
+    document.getElementById(inpId).innerHTML += ' <a class="controls" title="Показать последние 20 сообщений" href="' + pstolink + '+20">+20</a> ';
 }
 
 /** 
