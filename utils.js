@@ -39,3 +39,12 @@ function wrap(id, pattern, tag, params, center, pre, post){
 function add(id, pattern, text){
     document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.replace(pattern, "$1 " + text);
 }
+
+String.prototype.format = function() {
+    var formatted = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var regexp = new RegExp('\\{'+i+'\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
+    }
+    return formatted;
+};

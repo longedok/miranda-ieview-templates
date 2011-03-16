@@ -1,3 +1,12 @@
+/**    
+ * youtubePlayer = '<object style="height: 240px; width: 320px">' +
+ *               '<param name="movie" value="{0}">'+
+ *               '<param name="allowFullScreen" value="true">' +
+ *               '<param name="allowScriptAccess" value="always">' + 
+ *               '<embed src="{1}" type="application/x-shockwave-flash" ' +
+ *               'width="320" height="240"></object>';
+ */
+
 /** 
  * @description A nizer for juick.com.
  *
@@ -5,63 +14,31 @@
  */
 function juickonizer(inpId){
     var jlink = "xmpp:juick@juick.com?message;body=";
-    // regexp для номеров сообщений. 
-    // пример работы:
-    // для номера #123456/1 в $1 - будет #123456/1, в $2 - #123456
+
     var msgNumRegEx = /\B((#\d+)(\/\d+)?)/igm;
     var nickRegEx = /\B(@[a-zA-Z0-9-.@_|]+)\b/gm;
     var tagRegEx = /(\*\S+?)(?=<br>| \*)/igm;
-        
-    // обoрачиваем номера постов/комментов ссылками
+    var youtubeRegEx = /<a.*?>(http:\/\/(?:www.)?youtube.com\/[a-zA-Z0-9?=&;#_]+)<\/a>/igm;
+    var imageRegEx = /(<a[^<]*?>((?:http:\/\/)?(?:www\.)?[^\s]+?\/[^\s]+?(?:\.jpg|\.jpeg|\.gif|\.png))<\/a>)/igm;
+
+    add(inpId, imageRegEx, '<br /><br /><img width="320" height="240" src="$2" /><br />');
     wrap(inpId, msgNumRegEx, '<a>', 'class="msgNum" href="' + jlink + '$1%20"');
-    // оборачиваем ники ссылками
     wrap(inpId, nickRegEx, '<a>', 'class="nick" href="' + jlink + '$1+"');
     wrap(inpId, tagRegEx, '<a>', 'class="tag" href="' + jlink + '$1"');
-    // добавляем управление вставкой номеров постов/комментариев
+
     var msgNumRegEx2 = /\B(((#\d+)(\/\d+)?)<\/a>)/igm;
-    // #123456+
     var msgNumControl = '(<a class="controls" title="Показать комментарии" href="' + jlink + '$3+">+</a>';
-    // S #123456
     msgNumControl += ' <a class="controls" title="Подписаться на комментарии" href="' + jlink + 'S%20$3">S</a>';
-    // U #123456
     msgNumControl += ' <a class="controls" title="Отписаться от комментариев" href="' + jlink + 'U%20$3">U</a>';
-    // D #123456
     msgNumControl += ' <a class="controls" title="Удалить запись" href="' + jlink + 'D%20$2">D</a>';
-    // ! #123456
     msgNumControl += ' <a class="controls" title="Рекомендовать запись" href="' + jlink + '!%20$3">!</a>)';
 
     add(inpId, msgNumRegEx2, msgNumControl);
     
-    // Добавляем # и #+ в конец каждого сообщения
     document.getElementById(inpId).innerHTML += "<br><br>";
     document.getElementById(inpId).innerHTML += '<a class="controls"  title="Топ." href="' + jlink + '@top+">@</a> ';
     document.getElementById(inpId).innerHTML += '<a class="controls"  title="Показать вашу ленту." href="' + jlink + '#">#</a>';
     document.getElementById(inpId).innerHTML += ' <a class="controls" title="Показать последние 10 сообщений" href="' + jlink + '#+">#+</a> ';
-}
-
-/**
- * @description A nizer for bnw.blasux.ru
- *
- * @return void
- */
-function bnwizer(inpId){
-    var blink = "xmpp:bnw.blasux.ru?message;body=";
-    var msgNumRegEx = /--- ([A-Z0-9]{6})/igm;
-    var nickRegEx   = /\+\+\+ (\[.+?\]) ([\w\d-]+)( \(in reply to (([A-Z0-9]{6})(\/([A-Z0-9]{3}))\)))?:/igm;
-    //var tagRegEx    = / /igm;
-    wrap(inpId, msgNumRegEx, '<a>', 'class="msgNum" href="' + blink + 'show%20--message=$1"', '$1');
-    wrap(inpId, nickRegEx, '<a>', 'class="nick" href="' + blink + 'show%20--user=$2"', '@$2', '', ' $1');
-
-    var msgNumRegEx2 = /(([A-Z0-9]{6})(\/[A-Z0-9]{3})?<\/A>)/gm;
-    var msgNumControl = '(<a class="controls" title="Показать комментарии" href="' + 
-                        blink + 
-                        's%20-r%20-m%20$2">+</a>)';
-    add(inpId, msgNumRegEx2, msgNumControl);
-
-    document.getElementById(inpId).innerHTML += "<br><br>";
-    document.getElementById(inpId).innerHTML += ' <a class="controls" title="Показать последние сообщения" href="' + 
-                                                blink + 
-                                                'show">> show last</a></br> ';
 }
 
 /** 

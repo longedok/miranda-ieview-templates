@@ -48,7 +48,7 @@
             nizer(id);
             document.getElementById(id).id = "old_" + id;
         }
-    }
+    };
 </script>
 
 <div class="container">
@@ -59,14 +59,12 @@
     <script language="javascript">
         var id = "new_message";
         var juick = /(juick|jubo)/i;
-        var bnw = /bnw.blasux.ru/i;
         var psto = /psto/i;
         var nya = /nyashaj/i;
 
         nize(id, juick, juickonizer);
         nize(id, psto, pstonizer);
         nize(id, nya, nyaizer);
-        //nize(id, bnw, bnwizer);
     </script>
 </div>
 
@@ -89,15 +87,12 @@
     <script language="javascript">
         var id  = "hmessage";
         var juick = /(juick|jubo)/i;
-        var bnw = /bnw.blasux.ru/i;
         var psto = /psto/i;
         var nya = /nyashaj/i;
-
 
         nize(id, juick, juickonizer);
         nize(id, psto, pstonizer);
         nize(id, nya, nyaizer);
-        //nize(id, bnw, bnwizer);
     </script>
 </div>
 
