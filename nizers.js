@@ -21,7 +21,7 @@ function juickonizer(inpId){
     var youtubeRegEx = /<a.*?>(http:\/\/(?:www.)?youtube.com\/[a-zA-Z0-9?=&;#_]+)<\/a>/igm;
     var imageRegEx = /(<a[^<]*?>((?:http:\/\/)?(?:www\.)?[^\s]+?\/[^\s]+?(?:\.jpg|\.jpeg|\.gif|\.png))<\/a>)/igm;
 
-    add(inpId, imageRegEx, '<br /><br /><img width="320" height="240" src="$2" /><br />');
+    //add(inpId, imageRegEx, '<br /><br /><img width="320" height="240" src="$2" /><br />');
     wrap(inpId, msgNumRegEx, '<a>', 'class="msgNum" href="' + jlink + '$1%20"');
     wrap(inpId, nickRegEx, '<a>', 'class="nick" href="' + jlink + '$1+"');
     wrap(inpId, tagRegEx, '<a>', 'class="tag" href="' + jlink + '$1"');
@@ -54,7 +54,9 @@ function pstonizer(inpId){
     var msgNumRegEx = /\B((#[a-z0-9]{5})(\/\d+)?)/igm;
     var nickRegEx = /\B(@[a-zA-Z0-9-.@_|]+)\b/gm;
     var tagRegEx = /(\*\S+?)(?=<br>| \*)/igm;
-        
+    var imageRegEx = /(<a[^<]*?>((?:http:\/\/)?(?:www\.)?[^\s]+?\/[^\s]+?(?:\.jpg|\.jpeg|\.gif|\.png))<\/a>)/igm;
+
+    add(inpId, imageRegEx, '<br /><br /><img width="320" height="240" src="$2" /><br />');
     wrap(inpId, tagRegEx, '<a>', 'class="tag" href="' + pstolink + '$1"');
     // обoрачиваем номера постов/комментов ссылками
     wrap(inpId, msgNumRegEx, '<a>', 'class="msgNum" href="' + pstolink + '$1%20"');
