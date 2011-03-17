@@ -17,12 +17,16 @@ function juickonizer(inpId){
 
     var msgNumRegEx = /\B((#\d+)(\/\d+)?)/igm;
     var nickRegEx = /\B(@[a-zA-Z0-9-.@_|]+)\b/gm;
+    var nickRegEx2 = /\B@([a-zA-Z0-9-.@_|]+)\b/gm;
     var tagRegEx = /(\*\S+?)(?=<br>| \*)/igm;
     var youtubeRegEx = /<a.*?>(http:\/\/(?:www.)?youtube.com\/[a-zA-Z0-9?=&;#_]+)<\/a>/igm;
     var imageRegEx = /(<a[^<]*?>((?:http:\/\/)?(?:www\.)?[^\s]+?\/[^\s]+?(?:\.jpg|\.jpeg|\.gif|\.png))<\/a>)/igm;
+    var avatarUrl = 'http://api.juick.com/avatar?uname={0}&size=32';
 
-    add(inpId, nickRegEx, '<a class="pm" href="' + jlink + 'PM%20$1%20">[M]</a>');
-    add(inpId, imageRegEx, '<br /><br /><img width="320" height="240" src="$2" /><br />');
+    // dirty hack with last '/> @'
+    add_before(inpId, nickRegEx2, '<img class="avatar" src="'+avatarUrl.format('$1')+'" /> @');
+    add(inpId, nickRegEx, '<a class="pm" href="' + jlink + 'PM%20$1%20">[pm]</a>');
+    add(inpId, imageRegEx, '<br /><br /><img class="image" src="$2" /><br />');
     wrap(inpId, msgNumRegEx, '<a>', 'class="msgNum" href="' + jlink + '$1%20"');
     wrap(inpId, nickRegEx, '<a>', 'class="nick" href="' + jlink + '$1+"');
     wrap(inpId, tagRegEx, '<a>', 'class="tag" href="' + jlink + '$1"');

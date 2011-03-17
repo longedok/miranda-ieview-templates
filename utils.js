@@ -38,7 +38,11 @@ function wrap(id, pattern, tag, params, center, pre, post){
  */
 function add(id, pattern, text){
     document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.replace(pattern, "$1 " + text);
-}
+};
+
+function add_before(id, pattern, text){
+    document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.replace(pattern, text + "$1");
+};
 
 String.prototype.format = function() {
     var formatted = this;
