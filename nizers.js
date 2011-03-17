@@ -21,6 +21,7 @@ function juickonizer(inpId){
     var youtubeRegEx = /<a.*?>(http:\/\/(?:www.)?youtube.com\/[a-zA-Z0-9?=&;#_]+)<\/a>/igm;
     var imageRegEx = /(<a[^<]*?>((?:http:\/\/)?(?:www\.)?[^\s]+?\/[^\s]+?(?:\.jpg|\.jpeg|\.gif|\.png))<\/a>)/igm;
 
+    add(inpId, nickRegEx, '<a class="pm" href="' + jlink + 'PM%20$1%20">[M]</a>');
     add(inpId, imageRegEx, '<br /><br /><img width="320" height="240" src="$2" /><br />');
     wrap(inpId, msgNumRegEx, '<a>', 'class="msgNum" href="' + jlink + '$1%20"');
     wrap(inpId, nickRegEx, '<a>', 'class="nick" href="' + jlink + '$1+"');
