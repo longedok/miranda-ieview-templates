@@ -59,7 +59,7 @@
     <script language="javascript">
         var id = "new_message";
         var juick = /(juick|jubo)/i;
-        var psto = /psto/i;
+        var psto = /Point/i;
         var nya = /nyashaj/i;
 
         nize(id, juick, juickonizer);
@@ -87,7 +87,7 @@
     <script language="javascript">
         var id  = "hmessage";
         var juick = /(juick|jubo)/i;
-        var psto = /psto/i;
+        var psto = /Point/i;
         var nya = /nyashaj/i;
 
         nize(id, juick, juickonizer);

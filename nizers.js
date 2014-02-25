@@ -47,28 +47,23 @@ function juickonizer(inpId){
 }
 
 /** 
- * @description A nizer for psto.net.
+ * @description A nizer for point.im.
  *
  * @return void
  */
 function pstonizer(inpId){
-    var pstolink = "xmpp:psto@psto.net?message;body=";
+    var pstolink = "xmpp:p@point.im?message;body=";
     // regexp для номеров сообщений. 
     // пример работы:
     // для номера #123456/1 в $1 - будет #123456/1, в $2 - #123456
-    var msgNumRegEx = /\B((#[a-z0-9]{5})(\/\d+)?)/igm;
-    var nickRegEx = /\B(@[a-zA-Z0-9-.@_|]+)\b/gm;
-    var tagRegEx = /(\*\S+?)(?=<br>| \*)/igm;
+    var msgNumRegEx = /\B((#[a-z0-9]{4,})(\/\d+)?)/igm;
     var imageRegEx = /(<a[^<]*?>((?:http:\/\/)?(?:www\.)?[^\s]+?\/[^\s]+?(?:\.jpg|\.jpeg|\.gif|\.png))<\/a>)/igm;
 
     add(inpId, imageRegEx, '<br /><br /><img width="320" height="240" src="$2" /><br />');
-    wrap(inpId, tagRegEx, '<a>', 'class="tag" href="' + pstolink + '$1"');
     // обoрачиваем номера постов/комментов ссылками
     wrap(inpId, msgNumRegEx, '<a>', 'class="msgNum" href="' + pstolink + '$1%20"');
-    // оборачиваем ники ссылками
-    wrap(inpId, nickRegEx, '<span>', 'class="nick"');
     // добавляем управление вставкой номеров постов/комментариев
-    var msgNumRegEx2 = /\B(((#[a-z0-9]{5})(\/\d+)?)<\/a>)/igm;
+    var msgNumRegEx2 = /\B(((#[a-z]{4,})(\/\d+)?)<\/a>)/igm;
     // #123456+
     var msgNumControl = '(<a class="controls" title="Показать комментарии" href="' + pstolink + '$3+">+</a>';
     // S #123456
@@ -81,7 +76,7 @@ function pstonizer(inpId){
 
     add(inpId, msgNumRegEx2, msgNumControl);
     
-    //// Добавляем # и #+ в конец каждого сообщения
+    //// Добавляем +10 и +20 в конец каждого сообщения
     document.getElementById(inpId).innerHTML += "<br><br>";
     //document.getElementById(inpId).innerHTML += '<a class="controls"  title="Топ." href="' + pstolink + '@top+">@</a> ';
     document.getElementById(inpId).innerHTML += '<a class="controls"  title="Показать последние 10 сообщений" href="' + pstolink + '+10">+10</a>';
