@@ -31,15 +31,24 @@
 <!--MessageIn-->
 <script language="Javascript">
     /**
-     * Add's nizer's functionality to html-container with id = `id` if current
+     * Adds nizers functionality to html-container with id = `id` if current
      * contact name matches `regex`. :)
      *
-     * 'nizer' is a function, that recieves id of some html-container and adds
-     * to it capabilities of corresponding xmpp-based blogging service. 
+     * 'nizer' is a function, that recieves an id of an html-container and adds
+     * to it the capabilities of the corresponding xmpp-based blogging service. It does so by wrapping things 
+     * like message numbers and nicknames with xmpp-links (xmpp:juick@juick.com). That's why we need 
+     * ieview plugin to be able to render the links in the chat window. And then we need assocmgr plugin
+     * to register miranda as a default processor for xmpp-links, so when user clicks the link miranda 
+     * could paste associated with the link text into the chat's window input message box.
+     * 
+     * The bad thing about the nizers is that the decision whether to add them to a certain contact's chat window 
+     * is made based on that contact's name in the user's roster. So to be able to use this template a user must 
+     * assign his microblogging contacts certain names (For example 'juick' for juick@juick.com or 'point' for p@point.im).  
+     * Much more solid solution would've been to make such decision based on contact's jid, that way user can name his
+     * contacts whatever he wants, but I don't think there's a way to get contact's jid from ieview.
      *
-     * For example, now there are two nizers: juickonizer and bnwizer. First
-     * one adds feauters for juick@juick.com and second --
-     * for bnw.blasux.ru.
+     * There are three nizers now: juickonizer, pointizer and bnwizer. The first
+     * one adds feauters for juick@juick.com, second for p@point.im and the last one for bnw@bnw.im.
      *
      * Nizers defined in nizers.js.
      */
@@ -59,19 +68,19 @@
     <script language="javascript">
         var id = "new_message";
         var juick = /(juick|jubo)/i;
-        var psto = /Point/i;
-        var nya = /nyashaj/i;
+        var point = /Point/i;
+        var bnw = /bnw/i;
 
         nize(id, juick, juickonizer);
-        nize(id, psto, pstonizer);
-        nize(id, nya, nyaizer);
+        nize(id, point, pointizer);
+        nize(id, bnw, bnwizer);
     </script>
 </div>
 
 <!--hMessageIn-->
 <script language="Javascript">
     /**
-     * just one more definition of nize to get round ieview restrictions.
+     * Just one more definition of nize to get around the ieview specifics.
      */
     nize = function(id, regex, nizer){
         if (regex.test("%name%")){
@@ -86,13 +95,14 @@
   <span class="history_message" id="hmessage">%text%</span>
     <script language="javascript">
         var id  = "hmessage";
+
         var juick = /(juick|jubo)/i;
-        var psto = /Point/i;
-        var nya = /nyashaj/i;
+        var point = /Point/i;
+        var bnw = /bnw/i;
 
         nize(id, juick, juickonizer);
-        nize(id, psto, pstonizer);
-        nize(id, nya, nyaizer);
+        nize(id, point, pointizer);
+        nize(id, bnw, bnwizer);
     </script>
 </div>
 
