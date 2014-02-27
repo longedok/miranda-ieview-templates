@@ -47,7 +47,7 @@ function pointizer(inpId){
     // regexp for the post's ids   
     // example:
     // for a post id '#abcd/1' $1 match group would contain '#abcd/1' and $2 - '#abcd'
-    var msgNumRegEx = /\B((#[a-z0-9]{4,})(\/\d+)?)/igm;
+    var msgNumRegEx = /\B((#[a-z0-9]{3,})(\/\d+)?)/igm;
     var imageRegEx = /(<a[^<]*?>((?:http:\/\/)?(?:www\.)?[^\s]+?\/[^\s]+?(?:\.jpg|\.jpeg|\.gif|\.png))<\/a>)/igm;
 
     add(inpId, imageRegEx, '<br /><br /><img width="320" height="240" src="$2" /><br />');
@@ -56,7 +56,7 @@ function pointizer(inpId){
     wrap(inpId, msgNumRegEx, '<a>', 'class="msgNum" href="' + pointlink + '$1%20"');
 
     // add commands for requesting post's comments, subscribing to a post, etc.
-    var msgNumRegEx2 = /\B(((#[a-z]{4,})(\/\d+)?)<\/a>)/igm;
+    var msgNumRegEx2 = /\B(((#[a-z]{3,})(\/\d+)?)<\/a>)/igm;
     // #123456+
     var msgNumControl = '(<a class="controls" title="Показать комментарии" href="' + pointlink + '$3+">+</a>';
     // S #123456
